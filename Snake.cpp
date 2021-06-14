@@ -2,60 +2,48 @@
 
 Snake::Snake(COORD pos, int vel)
 {
-	this->pos = pos;
-	this->vel = vel;
-	this->len = 0;// intial snake length set to 1
-	this->direction = 'n';// initial direction set to "none"
+    this->pos = pos;
+    this->vel = vel;
+
+    dir = 'n';
+    len = 1;
+
+    body.push_back(pos);
 }
 
-void Snake::changeDirection(char dir)
-{
-	this->direction = dir;
-}
+void Snake::direction(char dir) { this->dir = dir; }
+void Snake::grow() { len++; }
+COORD Snake::get_pos() { return pos; }
 
-void Snake::moveSnake()
-{
-	switch (this->direction)
-	{
-	case 'u': // in case of the snake going up
-		this->pos.Y -= this->vel;
-		break;
-	case 'd': // in case of going down
-		this->pos.Y += this->vel;
-		break;
-	case 'l':// in case of going left
-		this->pos.X -= this->vel;
-		break;
-	case 'r': // in case of going Right
-		this->pos.X += this->vel;
-		break;
-	}
-}
+vector<COORD> Snake::get_body() { return body; }
 
-COORD Snake::getPosition()
+void Snake::move_snake()
 {
-	return this->pos;
-}
+    switch (dir)
+    {
+    case 'u': pos.Y -= vel; break;
+    case 'd': pos.Y += vel; break;
+    case 'l': pos.X -= vel; break;
+    case 'r': pos.X += vel; break;
+    }
 
-bool Snake::eaten(COORD food_pos)
-{
-	if (food_pos.X == this->pos.X && food_pos.Y == this->pos.Y)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-void Snake::grow()
-{
-	this->len++;
+    body.push_back(pos);
+    if (body.size() > len) body.erase(body.begin());
 }
 
 bool Snake::collided()
 {
-	if (this->pos.X < 1 || this->pos.X > WIDTH || this->pos.Y <1 || this->pos.Y >HEIGHT) return true;
-	else return false;
+    if (pos.X < 1 || pos.X > WIDTH - 2 || pos.Y < 1 || pos.Y > HEIGHT - 2) return true;
+
+    for (int i = 0; i < len - 1; i++)
+    {
+        if (pos.X == body[i].X && pos.Y == body[i].Y) return true;
+    }
+    return false;
+}
+
+bool Snake::eaten(COORD food)
+{
+    if (pos.X == food.X && pos.Y == food.Y) return true;
+    return false;
 }

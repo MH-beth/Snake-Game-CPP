@@ -1,3 +1,4 @@
 ﻿  main.cpp
-C:\Users\mouad\source\repos\tetris\tetris\main.cpp(61,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+C:\Users\mouad\source\repos\tetris\tetris\main.cpp(40,35): warning C4018: '<' : incompatibilité signed/unsigned
+C:\Users\mouad\source\repos\tetris\tetris\main.cpp(60,15): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
   tetris.vcxproj -> C:\Users\mouad\source\repos\tetris\Debug\tetris.exe

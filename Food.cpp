@@ -1,18 +1,9 @@
 #include "Food.h"
 
-
-Food::Food()
+void Food::gen_food()
 {
-	this->gen_Food();
+    pos.X = (rand() % WIDTH - 3) + 1;
+    pos.Y = (rand() % HEIGHT - 3) + 1;
 }
 
-void Food::gen_Food()
-{
-	this->pos.X = rand() % WIDTH - 2;
-	this->pos.Y = rand() % HEIGHT - 2;
-}
-
-COORD Food::getPos()
-{
-	return this->pos;
-}
+COORD Food::get_pos() { return pos; }

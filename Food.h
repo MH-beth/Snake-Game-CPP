@@ -1,10 +1,8 @@
-#pragma once
 #ifndef FOOD_H
 #define FOOD_H
 
-#include <Windows.h>
-#include <cstdlib>
-#include <ctime>
+#include <windows.h>
+#include <cstdio>
 
 #define WIDTH 50
 #define HEIGHT 25
@@ -12,12 +10,12 @@
 class Food
 {
 private:
-	COORD pos; // food Position
+    COORD pos;
 
 public:
-	Food();
-	void gen_Food();
-	COORD getPos();
+    void gen_food();
+
+    COORD get_pos();
 };
 
 #endif // FOOD_H
